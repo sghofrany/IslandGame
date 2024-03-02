@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://dgf35k6h8ueal"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wvgtr"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ilodd"]
+albedo_color = Color(1, 0.223529, 1, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_dvyci"]
+material = SubResource("StandardMaterial3D_ilodd")
+
+[node name="Node3D" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("CapsuleShape3D_wvgtr")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D/CollisionShape3D"]
+mesh = SubResource("CapsuleMesh_dvyci")
+skeleton = NodePath("../../..")

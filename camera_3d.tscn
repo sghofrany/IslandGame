@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bmag8r51a8rdp"]
+
+[ext_resource type="Script" path="res://mouse_events.gd" id="2_qte02"]
+
+[node name="Camera3D" type="Camera3D"]
+transform = Transform3D(0.691198, -0.180233, 0.69983, 0, 0.968401, 0.2494, -0.722666, -0.172385, 0.669356, 4.78505, 3.69674, 4.45655)
+script = ExtResource("2_qte02")

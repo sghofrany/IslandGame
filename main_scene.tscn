@@ -1,0 +1,129 @@
+[gd_scene load_steps=16 format=3 uid="uid://d3ng2ioysiqfr"]
+
+[ext_resource type="PackedScene" uid="uid://bmag8r51a8rdp" path="res://camera_3d.tscn" id="1_sab5o"]
+[ext_resource type="Script" path="res://main_scene.gd" id="1_xdtwj"]
+[ext_resource type="PackedScene" uid="uid://dauur1jlifirk" path="res://water.tscn" id="2_msb1m"]
+[ext_resource type="PackedScene" uid="uid://cfhxutbfdmbhx" path="res://campfire.tscn" id="2_sjrqr"]
+[ext_resource type="PackedScene" uid="uid://bw27wrb4y64q0" path="res://tile.tscn" id="2_us4om"]
+[ext_resource type="PackedScene" uid="uid://dowjefqunwise" path="res://detail_tree.tscn" id="4_t8xlq"]
+[ext_resource type="PackedScene" uid="uid://dh7ipqi0fofky" path="res://detail_rocks.tscn" id="5_afvwg"]
+[ext_resource type="Script" path="res://CameraPivot.gd" id="7_ku3rp"]
+
+[sub_resource type="Gradient" id="Gradient_1hpmd"]
+offsets = PackedFloat32Array(0, 0.00682594)
+colors = PackedColorArray(0.0302617, 0.302483, 0.785264, 1, 0, 0.423529, 0.670588, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_f5qp3"]
+gradient = SubResource("Gradient_1hpmd")
+fill_from = Vector2(1, 0.534188)
+fill_to = Vector2(1, 0.376068)
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_ypg6i"]
+ground_color = Color(0.266667, 0.792157, 0.764706, 1)
+night_sky = SubResource("GradientTexture2D_f5qp3")
+
+[sub_resource type="Sky" id="Sky_41y6b"]
+sky_material = SubResource("PhysicalSkyMaterial_ypg6i")
+
+[sub_resource type="Environment" id="Environment_e414u"]
+background_mode = 2
+background_energy_multiplier = 0.65
+sky = SubResource("Sky_41y6b")
+reflected_light_source = 2
+tonemap_mode = 3
+ssr_enabled = true
+ssao_radius = 1.5
+sdfgi_enabled = true
+glow_enabled = true
+volumetric_fog_density = 0.0079
+adjustment_saturation = 1.25
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r0k0i"]
+albedo_color = Color(0.694118, 0.596078, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_r3bf1"]
+material = SubResource("StandardMaterial3D_r0k0i")
+size = Vector3(0.25, 0.25, 0.25)
+
+[node name="MainScene" type="Node3D"]
+script = ExtResource("1_xdtwj")
+
+[node name="Water" parent="." instance=ExtResource("2_msb1m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.497017, 0, 0)
+
+[node name="campfire2" parent="." instance=ExtResource("2_sjrqr")]
+transform = Transform3D(0.238513, 0, 0.0749101, 0, 0.25, 0, -0.0749101, 0, 0.238513, 0.15395, 0.2, 1.56165)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_e414u")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.240228, 0.970716, 0, -0.970716, -0.240228, 0, 0, 0)
+shadow_enabled = true
+
+[node name="tile" parent="." instance=ExtResource("2_us4om")]
+
+[node name="tile2" parent="." instance=ExtResource("2_us4om")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+
+[node name="tile3" parent="." instance=ExtResource("2_us4om")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+
+[node name="tile4" parent="." instance=ExtResource("2_us4om")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 2)
+
+[node name="tile5" parent="." instance=ExtResource("2_us4om")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1)
+
+[node name="tile6" parent="." instance=ExtResource("2_us4om")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="Control"]
+layout_mode = 1
+offset_right = 244.0
+offset_bottom = 100.0
+
+[node name="Actual" type="Label" parent="Control/Panel"]
+layout_mode = 0
+offset_right = 244.0
+offset_bottom = 50.0
+
+[node name="Floor" type="Label" parent="Control/Panel"]
+layout_mode = 0
+offset_top = 50.0
+offset_right = 244.0
+offset_bottom = 100.0
+
+[node name="detail_tree" parent="." instance=ExtResource("4_t8xlq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 2)
+
+[node name="detail_tree2" parent="." instance=ExtResource("4_t8xlq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.364954, 0.2, 1.67533)
+
+[node name="detail_tree3" parent="." instance=ExtResource("4_t8xlq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.364954, 0.2, 2.0211)
+
+[node name="detail_tree4" parent="." instance=ExtResource("4_t8xlq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.026042, 0.2, 1.74352)
+
+[node name="detail_rocks" parent="." instance=ExtResource("5_afvwg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.834122, 0.2, 1.80428)
+
+[node name="CameraPivot" type="Node3D" parent="."]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0.5, 0)
+script = ExtResource("7_ku3rp")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.352337, 0)
+mesh = SubResource("BoxMesh_r3bf1")
+
+[node name="Camera3D" parent="CameraPivot" instance=ExtResource("1_sab5o")]
+transform = Transform3D(-2.86604, 2.44679, -1.3413, -1.84033e-08, 1.92279, 3.50755, 2.79031, 2.51319, -1.3777, 0, 8.8441, -4.09979)
